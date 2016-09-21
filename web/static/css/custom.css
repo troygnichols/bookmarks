@@ -26,3 +26,8 @@ form.link {
 .btn-block {
   max-width: 500px;
 }
+
+.help-block {
+  color: #a94442;
+  font-weight: bold;
+}

@@ -2,7 +2,7 @@
   <%= breadcrumbs do %>
     <%= breadcrumb "Users", user_path(@conn, :index), icon: "users" %>
     <%= breadcrumb @user.name, user_path(@conn, :show, @user.id), icon: "user" %>
-    <%= breadcrumb "Edit User", icon: "edit"  %>
+    <%= breadcrumb "Edit", icon: "edit"  %>
   <% end %>
 
 <%= form_for @changeset, user_path(@conn, :update, @user), [method: :patch], fn f -> %>
