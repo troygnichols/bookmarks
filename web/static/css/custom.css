@@ -1,0 +1,28 @@
+main {
+  margin-top: 90px;
+}
+
+form.link {
+  display: inline;
+}
+
+.user-index-title {
+  width: 170px;
+  margin: 2.5em 0 .5em 0;
+}
+
+.user-index-actions {
+  min-width: 120px;
+}
+
+.nav-title {
+  margin-top: 5px;
+}
+
+.table {
+  background-color: #f9f9fa;
+}
+
+.btn-block {
+  max-width: 500px;
+}
