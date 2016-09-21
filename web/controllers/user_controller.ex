@@ -40,6 +40,14 @@ defmodule Bookmarks.UserController do
 
     conn
     |> put_flash(:info, "#{user.name} updated")
+    |> redirect(to: user_path(conn, :show, id))
+  end
+
+  def delete(conn, %{"id"=>id}) do
+    Repo.delete!(%User{id: String.to_integer(id)})
+
+    conn
+    |> put_flash(:info, "Deleted user #{id}")
     |> redirect(to: user_path(conn, :index))
   end
 end
