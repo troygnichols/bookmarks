@@ -1,15 +1,34 @@
-<h1>Users</h1>
+<h1 class="m-x-auto user-index-title"><%= font_awesome("users") %> Users</h1>
 
-<table class="table">
-  <tbody>
-    <%= for user <- @users do %>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="table-inverse">
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link "View", to: user_path(@conn, :show, user) %> |
-          <%= link "Edit", to: user_path(@conn, :edit, user) %>
-        </td>
+        <th class="hidden-sm-down">#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th class="user-index-actions hidden-sm-down">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <%= for user <- @users do %>
+        <tr>
+          <th class="hidden-sm-down" scope="row"><%= user.id %></td>
+          <td><%= link user.name, to: user_path(@conn, :show, user) %></td>
+          <td><%= user.email %></td>
+          <td class="hidden-sm-down"><%= link "View", to: user_path(@conn, :show, user) %> |
+            <%= font_awesome_link "edit", to: user_path(@conn, :edit, user) %> |
+            <%= font_awesome_link "trash", to: user_path(@conn, :delete, user),
+              method: :delete, data: [confirm: "Are you sure?"] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<%= link to: user_path(@conn, :new), class: "btn btn-primary" do %>
+  <%= font_awesome "plus" %> New User
+<% end %>

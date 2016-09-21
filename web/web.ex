@@ -52,6 +52,9 @@ defmodule Bookmarks.Web do
       import Bookmarks.Router.Helpers
       import Bookmarks.ErrorHelpers
       import Bookmarks.Gettext
+
+      import Bookmarks.FontAwesomeHelpers
+      import Bookmarks.BreadcrumbHelpers
     end
   end
 

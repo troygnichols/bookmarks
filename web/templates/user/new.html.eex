@@ -10,7 +10,7 @@
   <div class="form-group">
     <%= password_input f, :password, placeholder: "Password", class: "form-control", required: true %>
   </div>
-  <%= submit "Create User", class: "btn btn-primary btn-lg" %>
+  <%= font_awesome_submit "Create User", "thumbs-up", class: "btn btn-primary btn-lg" %>
 <% end %>
 
 

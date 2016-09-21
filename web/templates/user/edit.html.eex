@@ -7,10 +7,11 @@
   <div class="form-group">
     <%= text_input f, :email, value: @user.email, placeholder: "Email", class: "form-control", type: "email", required: true %>
   </div>
-  <div class="form-group pull-right">
-    <a href="javascript:alert('todo')">Change password</a>
-  </div>
-  <%= submit "Save User", class: "btn btn-primary btn-lg" %>
+  <center>
+    <%= font_awesome_submit "Save User", "save", class: "btn btn-primary btn-lg btn-block" %>
+    <hr>
+    <%= font_awesome_link "Change Password", "key", to: "javascript:alert('todo')", class: "btn btn-sm btn-secondary btn-block" %>
+  </center>
 <% end %>
 
 
