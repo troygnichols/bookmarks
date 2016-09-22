@@ -18,7 +18,9 @@ defmodule Bookmarks.FontAwesomeHelpers do
   end
 
   def font_awesome_submit(text, icon_name, options \\ []) do
-    defaults = [to: "#", data: [submit: "parent"], rel: "nofollow"]
-    font_awesome_link(text, icon_name, Keyword.merge(defaults, options))
+    defaults = [type: :submit, to: "javascript:void(0)"]
+    {:safe, icon} = font_awesome(icon_name)
+    content = icon <> " #{text}"
+    button({:safe, content}, Keyword.merge(defaults, options))
   end
 end
