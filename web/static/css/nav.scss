@@ -1,0 +1,58 @@
+.nav-menu-items {
+  max-height: 0;
+  transition: max-height .25s linear;
+  overflow: hidden;
+  width: 100%;
+
+  p {
+    font-size: 22px;
+  }
+}
+
+.navbar-checkbox {
+  display: none;
+}
+
+#navbar-checkbox:checked + .nav-menu-items {
+  display: block;
+  max-height: 300px;
+}
+
+#navbar-checkbox:checked + .nav-menu-items + .navbar-handle {
+  &, &:after, &:before {
+    border-color: #aaa;
+  }
+}
+
+.navbar-handle {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  font-size: 45px;
+  padding: .5em 0;
+  height: 0;
+  width: 1em * 75px / 45px;
+  border-top: (1em * 6px / 45px) solid #fff;
+
+  &:before, &:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    content: ' ';
+    border-top: (1em * 6px / 45px) solid #fff;
+  }
+
+  &:before {
+    top: 1em * 17px / 45px;
+  }
+
+  &:after {
+    top: 1em * 40px / 45px;
+  }
+
+  position: absolute;
+  font-size: 1.2em;
+  top: 1em;
+  right: 1em;
+  z-index: 10;
+}

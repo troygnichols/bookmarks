@@ -16,7 +16,22 @@
 
     <div class="container-fluid">
       <nav class="navbar navbar-dark navbar-dark bg-inverse navbar-fixed-top">
-        <h3 class="nav-title"><%= font_awesome("thumbs-up") %> Good Bookmarks</h3>
+        <h3 class="nav-title pull-left"><%= font_awesome("thumbs-up") %> Good Bookmarks</h3>
+        <%= if @current_user do %>
+          <input id="navbar-checkbox" class="navbar-checkbox pull-right" type="checkbox">
+          <div class="nav-menu-items">
+            <center>
+              <hr>
+              <p>Logged in as <strong><%= @current_user.name %></strong></p>
+              <hr>
+              <%= font_awesome_link "Log out", "sign-out",
+                to: session_path(@conn, :delete, @current_user),
+                method: :delete,
+                class: "btn btn-primary btn-block" %>
+            </center>
+          </div>
+          <label for="navbar-checkbox" class="navbar-handle"></label>
+        <% end %>
       </nav>
     </div>
 
