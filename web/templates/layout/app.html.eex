@@ -29,6 +29,7 @@
                 method: :delete,
                 class: "btn btn-primary btn-block" %>
             </center>
+            <hr>
           </div>
           <label for="navbar-checkbox" class="navbar-handle"></label>
         <% end %>
