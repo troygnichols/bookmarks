@@ -29,6 +29,6 @@
 
 <hr>
 
-<%= link to: user_path(@conn, :new), class: "btn btn-primary" do %>
+<%= link to: user_path(@conn, :new), class: "btn btn-primary btn-block" do %>
   <%= font_awesome "plus" %> New User
 <% end %>

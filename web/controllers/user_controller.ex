@@ -1,8 +1,12 @@
 defmodule Bookmarks.UserController do
   use Bookmarks.Web, :controller
 
+  plug :authenticate when action in [:index, :show]
+
   alias Bookmarks.User
   alias Bookmarks.Repo
+
+  alias Bookmarks.AuthPlug, as: Auth
 
   def index(conn, _params) do
     users = Repo.all(User)
@@ -19,6 +23,7 @@ defmodule Bookmarks.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
+        |> Auth.login(user)
         |> put_flash(:info, "#{user.name} created")
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
@@ -34,17 +39,20 @@ defmodule Bookmarks.UserController do
 
   def edit(conn, %{"id"=>id}) do
     user = Repo.get!(User, id)
-    changeset = User.changeset(%User{})
+    changeset = User.changeset(user)
     render conn, "edit.html", changeset: changeset, user: user
   end
 
   def update(conn, %{"id"=>id, "user"=>user_params}) do
     changeset = User.changeset(%User{id: String.to_integer(id)}, user_params)
-    {:ok, user} = Repo.update(changeset)
-
-    conn
-    |> put_flash(:info, "#{user.name} updated")
-    |> redirect(to: user_path(conn, :show, id))
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "#{user.name} updated")
+        |> redirect(to: user_path(conn, :show, id))
+      {:error, changeset} ->
+        render(conn, "edit.html", changeset: changeset)
+    end
   end
 
   def delete(conn, %{"id"=>id}) do
@@ -53,5 +61,16 @@ defmodule Bookmarks.UserController do
     conn
     |> put_flash(:info, "Deleted user #{id}")
     |> redirect(to: user_path(conn, :index))
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: page_path(conn, :index))
+      |> halt()
+    end
   end
 end

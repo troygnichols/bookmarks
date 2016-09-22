@@ -21,14 +21,12 @@
   </table>
 </div>
 
-<center>
-  <%= font_awesome_link "Edit", "edit", to: user_path(@conn, :edit, @user),
-    class: "btn btn-primary btn-block btn-lg" %>
+<%= font_awesome_link "Edit", "edit", to: user_path(@conn, :edit, @user),
+class: "btn btn-primary btn-block btn-lg" %>
 
-  <hr>
+<hr>
 
-  <%= font_awesome_link "Delete", "trash", to: user_path(@conn, :delete, @user),
-    class: "btn btn-danger btn-block", method: :delete, data: [
-      confirm: "Are you sure?"
-  ] %>
-</center>
+<%= font_awesome_link "Delete", "trash", to: user_path(@conn, :delete, @user),
+class: "btn btn-danger btn-block", method: :delete, data: [
+  confirm: "Are you sure?"
+] %>

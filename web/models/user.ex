@@ -1,6 +1,8 @@
 defmodule Bookmarks.User do
   use Bookmarks.Web, :model
 
+  alias Bookmarks.ModelHelpers, as: Helpers
+
   schema "users" do
     field :name, :string
     field :email, :string
@@ -13,6 +15,7 @@ defmodule Bookmarks.User do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, ~w(name email))
+    |> Helpers.trim_fields([:name, :email])
     |> validate_length(:email, min: 1, max: 100)
     |> validate_required([:name, :email])
   end
@@ -30,7 +33,7 @@ defmodule Bookmarks.User do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
       _ ->
-      changeset
+        changeset
     end
   end
 end

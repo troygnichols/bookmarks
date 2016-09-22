@@ -4,6 +4,7 @@
     <%= breadcrumb @user.name, user_path(@conn, :show, @user.id), icon: "user" %>
     <%= breadcrumb "Edit", icon: "edit"  %>
   <% end %>
+</center>
 
 <%= form_for @changeset, user_path(@conn, :update, @user), [method: :patch], fn f -> %>
   <div class="form-group">
@@ -14,12 +15,10 @@
     <%= text_input f, :email, value: @user.email, placeholder: "Email", class: "form-control",
       type: "email", required: true %>
   </div>
-  <center>
-    <%= font_awesome_submit "Save User", "save", class: "btn btn-primary btn-lg btn-block" %>
-    <hr>
-    <%= font_awesome_link "Change Password", "key", to: "javascript:alert('todo')",
-      class: "btn btn-secondary btn-block" %>
-  </center>
+  <%= font_awesome_submit "Save User", "save", class: "btn btn-primary btn-lg btn-block" %>
+  <hr>
+  <%= font_awesome_link "Change Password", "key", to: "javascript:alert('todo')",
+    class: "btn btn-secondary btn-block" %>
 <% end %>
 
 
