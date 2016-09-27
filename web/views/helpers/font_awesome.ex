@@ -7,9 +7,10 @@ defmodule Bookmarks.FontAwesomeHelpers do
   end
 
   def font_awesome_link(text, icon_name, options) do
-    link(options) do
+    placement = Keyword.get(options, :icon_placement, "before")
+    link(html_options(options)) do
       {:safe, icon} = font_awesome(icon_name)
-      {:safe, icon <> " #{text}"}
+      {:safe, icon_placement(text, icon, placement)}
     end
   end
 
@@ -20,7 +21,23 @@ defmodule Bookmarks.FontAwesomeHelpers do
   def font_awesome_submit(text, icon_name, options \\ []) do
     defaults = [type: :submit, to: "javascript:void(0)"]
     {:safe, icon} = font_awesome(icon_name)
-    content = icon <> " #{text}"
-    button({:safe, content}, Keyword.merge(defaults, options))
+    placement = Keyword.get(options, :icon_placement, "before")
+    button({:safe, icon_placement(text, icon, placement)},
+     Keyword.merge(defaults, html_options(options)))
+  end
+
+  defp icon_placement(text, icon, placement) do
+    case placement do
+      "before" ->
+        icon <> " #{text}"
+      "after" ->
+        "#{text} " <> icon
+      _ ->
+        raise "Unkonwn icon placement: #{placement}"
+    end
+  end
+
+  defp html_options(options) do
+    Keyword.drop(options, [:icon_placement])
   end
 end

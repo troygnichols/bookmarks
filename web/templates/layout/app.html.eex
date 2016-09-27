@@ -8,23 +8,27 @@
     <meta name="author" content="">
 
     <title>Good Bookmarks</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
 
     <div class="container-fluid">
       <nav class="navbar navbar-dark navbar-dark bg-inverse navbar-fixed-top">
-        <h3 class="nav-title pull-left"><%= font_awesome("thumbs-up") %> Good Bookmarks</h3>
+        <h3 class="nav-title pull-left">
+          <%= link to: page_path(@conn, :index) do %>
+            <%= font_awesome("bookmark") %> Good Bookmarks <%= font_awesome("thumbs-up fa-sm") %></h3>
+          <% end %>
         <%= if @current_user do %>
           <input id="navbar-checkbox" class="navbar-checkbox pull-right" type="checkbox">
           <div class="nav-menu-items">
             <center>
               <hr>
-              <p>Logged in as <strong><%= @current_user.name %></strong></p>
+              <p>Logged in as <strong><%= username(@current_user) %></strong></p>
               <hr>
               <%= font_awesome_link "Log out", "sign-out",
+                icon_placement: "after",
                 to: session_path(@conn, :delete, @current_user),
                 method: :delete,
                 class: "btn btn-primary btn-block" %>

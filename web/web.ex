@@ -55,6 +55,7 @@ defmodule Bookmarks.Web do
 
       import Bookmarks.FontAwesomeHelpers
       import Bookmarks.BreadcrumbHelpers
+      import Bookmarks.UtilHelpers
     end
   end
 

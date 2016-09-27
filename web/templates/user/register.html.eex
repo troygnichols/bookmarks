@@ -1,0 +1,32 @@
+<center>
+  <%= breadcrumbs do %>
+    <%= breadcrumb "Home", page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "New account", icon: "user" %>
+  <% end %>
+</center>
+
+<%= external_auth_links(@conn) %>
+<%= or_div %>
+
+<p><strong>Register with email &amp; password</strong></p>
+<%= form_for @changeset, user_path(@conn, :create), [id: "create-user-form"], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops! Something went wrong. Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= text_input f, :email, placeholder: "Email", class: "form-control", type: "email", required: true %>
+    <%= error_tag f, :email %>
+  </div>
+  <div class="form-group">
+    <%= password_input f, :password, placeholder: "Password", class: "form-control", required: true %>
+    <%= error_tag f, :password %>
+  </div>
+  <%= font_awesome_submit "Continue", "arrow-right", icon_placement: "after", class: "btn btn-primary btn-block" %>
+<% end %>
+
+<div class="center-sm reg-login-text" style="width: 186px;">
+  <%= link "Already have an account?", to: session_path(@conn, :new) %>
+</div>

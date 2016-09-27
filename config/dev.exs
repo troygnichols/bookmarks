@@ -41,3 +41,4 @@ config :bookmarks, Bookmarks.Repo,
   database: "bookmarks_dev",
   hostname: "localhost",
   pool_size: 10
+

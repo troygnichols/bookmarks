@@ -17,7 +17,7 @@ defmodule Bookmarks.User do
     if String.length("#{model.email}") > 0 do
       model.email
     else
-      model.id
+      "user-#{model.id}"
     end
   end
 

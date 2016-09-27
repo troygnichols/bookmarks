@@ -8,6 +8,11 @@ defmodule Bookmarks.UserController do
 
   alias Bookmarks.AuthPlug, as: Auth
 
+  def register(conn, _params) do
+    changeset = User.changeset(%User{})
+    render conn, "register.html", changeset: changeset
+  end
+
   def index(conn, _params) do
     users = Repo.all(User)
     render conn, "index.html", users: users
@@ -24,7 +29,7 @@ defmodule Bookmarks.UserController do
       {:ok, user} ->
         conn
         |> Auth.login(user)
-        |> put_flash(:info, "#{user.name} created")
+        |> put_flash(:info, "#{user.email} created")
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -48,7 +53,7 @@ defmodule Bookmarks.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "#{user.name} updated")
+        |> put_flash(:info, "#{user.email} updated")
         |> redirect(to: user_path(conn, :show, id))
       {:error, changeset} ->
         render(conn, "edit.html", changeset: changeset)

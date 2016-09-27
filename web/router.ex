@@ -14,12 +14,21 @@ defmodule Bookmarks.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/auth", Bookmarks do
+    pipe_through :browser
+    get "/:provider", AuthController, :index
+    get "/:provider/callback", AuthController, :callback
+  end
+
   scope "/", Bookmarks do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
 
-    resources "/users", UserController
+    get "/users/register", UserController, :register
+    resources "/users", UserController do
+    end
+
     resources "/sessions", SessionController, only: [:index ,:new, :create, :delete]
   end
 

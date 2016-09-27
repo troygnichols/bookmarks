@@ -19,7 +19,7 @@ defmodule Bookmarks.Mixfile do
   def application do
     [mod: {Bookmarks, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :oauth2]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,6 +41,7 @@ defmodule Bookmarks.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 2.0"},
+      {:oauth2, "~> 0.7", git: "https://github.com/scrogson/oauth2.git", ref: "c0459d"}
     ]
   end
 

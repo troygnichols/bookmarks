@@ -31,3 +31,82 @@ form.link {
   color: #a94442;
   font-weight: bold;
 }
+
+.or-container {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 10px;
+  clear: both;
+  color: #6a737c;
+  font-variant: small-caps;
+}
+
+.or-hr {
+  margin-bottom: 0;
+  position: relative;
+  top: 19px;
+  height: 0;
+  border: 0;
+  border-top: 1px solid #e4e6e8;
+  color: #9fa6ad;
+  background-color: #9fa6ad;
+}
+
+.or {
+  margin-top: 5px;
+  display: inline-block;
+  position: relative;
+  padding: 0 10px;
+  background-color: #fff;
+}
+
+.btn-github {
+  color: #333;
+  background-color: #e5e5e5;
+  border-color: #d5d5d5;
+}
+
+.btn-google {
+  background-color: #db4437;
+  color: #fff;
+  &:hover{
+    color: #fff;
+  }
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  border-color: #29487d;
+  color: #fff;
+}
+
+.nav-title {
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+    color: inherit;
+  }
+}
+
+.external-auth-link {
+  margin-bottom: 0.3em;
+  a {
+    width: 100%;
+  }
+}
+
+.reg-login-text {
+  margin-top: .5em;
+}
+
+@media (max-width: 480px) {
+  .center-sm {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .reg-login-text {
+    margin-top: 2em;
+  }
+}

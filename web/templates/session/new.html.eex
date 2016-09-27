@@ -1,8 +1,12 @@
 <center>
-  <h1><%= font_awesome("sign-in") %> Login</h1>
-
-  <br>
+  <h1>Login <%= font_awesome("sign-in") %></h1>
 </center>
+<br>
+
+<%= external_auth_links(@conn) %>
+
+<%= or_div %>
+
 
 <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
   <div class="form-group">
@@ -11,5 +15,9 @@
   <div class="form-group">
     <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
   </div>
-  <%= font_awesome_submit "Log In", "sign-in", class: "btn btn-primary btn-block btn-lg" %>
+  <%= font_awesome_submit "Log In", "sign-in", icon_placement: "after", class: "btn btn-primary btn-block btn-lg" %>
 <% end %>
+
+<div class="center-sm reg-login-text" style="width: 175px;">
+  <%= link "Don't have an account?", to: user_path(@conn, :register) %>
+</div>
