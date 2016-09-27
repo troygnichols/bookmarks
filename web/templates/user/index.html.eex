@@ -5,7 +5,6 @@
     <thead class="table-inverse">
       <tr>
         <th class="hidden-sm-down">#</th>
-        <th>Name</th>
         <th>Email</th>
         <th class="user-index-actions hidden-sm-down">Actions</th>
       </tr>
@@ -14,8 +13,7 @@
       <%= for user <- @users do %>
         <tr>
           <th class="hidden-sm-down" scope="row"><%= user.id %></td>
-          <td><%= link user.name, to: user_path(@conn, :show, user) %></td>
-          <td><%= user.email %></td>
+          <td><%= link username(user), to: user_path(@conn, :show, user) %></td>
           <td class="hidden-sm-down"><%= link "View", to: user_path(@conn, :show, user) %> |
             <%= font_awesome_link "edit", to: user_path(@conn, :edit, user) %> |
             <%= font_awesome_link "trash", to: user_path(@conn, :delete, user),

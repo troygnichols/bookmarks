@@ -11,11 +11,7 @@
   <% end %>
 </center>
 
-<%= form_for @changeset, user_path(@conn, :create), fn f -> %>
-  <div class="form-group">
-    <%= text_input f, :name, placeholder: "Name", class: "form-control", autofocus: "autofocus", required: true %>
-    <%= error_tag f, :name %>
-  </div>
+<%= form_for @changeset, user_path(@conn, :create), [id: "create-user-form"], fn f -> %>
   <div class="form-group">
     <%= text_input f, :email, placeholder: "Email", class: "form-control", type: "email", required: true %>
     <%= error_tag f, :email %>
@@ -24,5 +20,5 @@
     <%= password_input f, :password, placeholder: "Password", class: "form-control", required: true %>
     <%= error_tag f, :password %>
   </div>
-  <%= font_awesome_submit "Create User", "thumbs-up", class: "btn btn-primary btn-block btn-lg" %>
+  <%= font_awesome_submit "Continue", "arrow-right", class: "btn btn-primary btn-block btn-lg" %>
 <% end %>

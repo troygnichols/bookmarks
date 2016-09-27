@@ -4,7 +4,6 @@ defmodule Bookmarks.UserTest do
   alias Bookmarks.User
 
   @valid_attrs %{
-    name: "Vladmir Putin",
     email: "putin@kremlin.ru",
     password: "secret"
   }
@@ -23,8 +22,7 @@ defmodule Bookmarks.UserTest do
 
   test "trims fields" do
     changeset = User.changeset(%User{}, Map.merge(@valid_attrs, %{
-      name: " Matty Groves  ", email: "  matty42069@hotmail.com "}))
-    assert changeset.changes.name == "Matty Groves"
+      email: "  matty42069@hotmail.com "}))
     assert changeset.changes.email == "matty42069@hotmail.com"
   end
 
