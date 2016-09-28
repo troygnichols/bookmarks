@@ -8,7 +8,7 @@
 <%= external_auth_links(@conn) %>
 <%= or_div %>
 
-<p><strong>Register with email &amp; password</strong></p>
+<p class="center-sm" style="width: 242px;"><strong>Register with email &amp; password</strong></p>
 <%= form_for @changeset, user_path(@conn, :create), [id: "create-user-form"], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">

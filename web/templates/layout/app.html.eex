@@ -18,7 +18,7 @@
       <nav class="navbar navbar-dark navbar-dark bg-inverse navbar-fixed-top">
         <h3 class="nav-title pull-left">
           <%= link to: page_path(@conn, :index) do %>
-            <%= font_awesome("bookmark") %> Good Bookmarks <%= font_awesome("thumbs-up fa-sm") %></h3>
+            <%= font_awesome("thumbs-up") %> Good Bookmarks <%= font_awesome("bookmark") %></h3>
           <% end %>
         <%= if @current_user do %>
           <input id="navbar-checkbox" class="navbar-checkbox pull-right" type="checkbox">
