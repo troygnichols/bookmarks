@@ -36,6 +36,7 @@ defmodule Bookmarks.Web do
 
       import Bookmarks.Router.Helpers
       import Bookmarks.Gettext
+      import Bookmarks.AuthPlug, only: [authenticate_user: 2]
     end
   end
 
@@ -62,6 +63,8 @@ defmodule Bookmarks.Web do
   def router do
     quote do
       use Phoenix.Router
+
+      import Bookmarks.AuthPlug, only: [authenticate_user: 2]
     end
   end
 

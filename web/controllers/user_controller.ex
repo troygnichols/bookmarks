@@ -1,7 +1,7 @@
 defmodule Bookmarks.UserController do
   use Bookmarks.Web, :controller
 
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate_user when action in [:index, :show]
 
   alias Bookmarks.User
   alias Bookmarks.Repo
@@ -66,16 +66,5 @@ defmodule Bookmarks.UserController do
     conn
     |> put_flash(:info, "Deleted user #{id}")
     |> redirect(to: user_path(conn, :index))
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: page_path(conn, :index))
-      |> halt()
-    end
   end
 end
