@@ -12,10 +12,10 @@ defmodule Google do
     ]
   end
 
-  def client do
-    cfg = Keyword.merge(Application.get_env(:bookmarks, __MODULE__), config())
+  # Public API
 
-    cfg
+  def client do
+    Keyword.merge(Application.get_env(:bookmarks, __MODULE__), config())
     |> OAuth2.Client.new()
   end
 
@@ -25,10 +25,10 @@ defmodule Google do
 
   def get_token!(params \\ [], _headers \\ []) do
     OAuth2.Client.get_token!(client(),
-     Keyword.merge(params, client_secret: client().client_secret))
+      Keyword.merge(params, client_secret: client().client_secret))
   end
 
-  # strategy callbacks
+  # Strategy callbacks
 
   def authorize_url(client, params) do
     AuthCode.authorize_url(client, params)

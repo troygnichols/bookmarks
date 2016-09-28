@@ -28,7 +28,11 @@ defmodule Bookmarks.AuthController do
   end
 
   defp authorize_url!("github") do
-    GitHub.authorize_url!
+    GitHub.authorize_url!()
+  end
+
+  defp authorize_url!("facebook") do
+    Facebook.authorize_url!()
   end
 
   defp authorize_url!(provider) do
@@ -43,6 +47,10 @@ defmodule Bookmarks.AuthController do
     GitHub.get_token!(code: code)
   end
 
+  defp get_token!("facebook", code) do
+    Facebook.get_token!(code: code)
+  end
+
   defp get_user!(provider = "google", client) do
     url = "https://www.googleapis.com/plus/v1/people/me/openIdConnect"
     %{body: user} = OAuth2.Client.get!(client, url)
@@ -52,6 +60,12 @@ defmodule Bookmarks.AuthController do
   defp get_user!(provider = "github", client) do
     url = "https://api.github.com/user"
     %{body: user} = OAuth2.Client.get!(client, url)
+    find_or_create_user(provider, user["id"])
+  end
+
+  defp get_user!(provider = "facebook", client) do
+    %{body: user} = OAuth2.Client.get!(client, "/me", fields: "id,name")
+    IO.puts "user: #{inspect user}"
     find_or_create_user(provider, user["id"])
   end
 

@@ -12,5 +12,7 @@ defmodule Bookmarks.Repo.Migrations.CreateOauthAuthorizations do
 
     create unique_index(:oauth_authorizations, [:user_id, :provider])
     create unique_index(:oauth_authorizations, [:user_id, :provider, :uid])
+
+    create index(:oauth_authorizations, [:provider, :uid])
   end
 end

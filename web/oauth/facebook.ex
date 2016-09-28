@@ -1,4 +1,4 @@
-defmodule GitHub do
+defmodule Facebook do
   use OAuth2.Strategy
 
   alias OAuth2.Strategy.AuthCode
@@ -6,9 +6,9 @@ defmodule GitHub do
   defp config do
     [
       strategy: __MODULE__,
-      site: "api.github.com",
-      authorize_url: "https://github.com/login/oauth/authorize",
-      token_url: "https://github.com/login/oauth/access_token"
+      site: "https://graph.facebook.com",
+      authorize_url: "https://www.facebook.com/dialog/oauth",
+      token_url: "/v2.7/oauth/access_token"
     ]
   end
 
@@ -25,9 +25,8 @@ defmodule GitHub do
   end
 
   def get_token!(params \\ [], _headers \\ []) do
-    client_secret = client().client_secret
-    p = Keyword.merge(params, client_secret: client_secret)
-    OAuth2.Client.get_token!(client(), p)
+    OAuth2.Client.get_token!(client(), Keyword.merge(params,
+      client_id: client().client_id, client_secret: client().client_secret))
   end
 
   # Strategy callbacks

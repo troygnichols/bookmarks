@@ -60,7 +60,20 @@ form.link {
   background-color: #fff;
 }
 
+.external-auth-link {
+  margin-bottom: 0.3em;
+  a {
+    &:hover {
+      color: #fff;
+    }
+    width: 100%;
+  }
+}
+
 .btn-github {
+  &:hover {
+    color: #333 !important;
+  }
   color: #333;
   background-color: #e5e5e5;
   border-color: #d5d5d5;
@@ -86,13 +99,6 @@ form.link {
       text-decoration: none;
     }
     color: inherit;
-  }
-}
-
-.external-auth-link {
-  margin-bottom: 0.3em;
-  a {
-    width: 100%;
   }
 }
 
