@@ -1,0 +1,33 @@
+<center>
+  <%= breadcrumbs do %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "Bookmarks", user_bookmark_path(@conn, :index, @user), icon: "bookmark" %>
+    <%= breadcrumb "New", icon: "plus" %>
+  <% end %>
+
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops! Something went wrong. Please check the errors below.</p>
+    </div>
+  <% end %>
+</center>
+
+<%= form_for @changeset, user_bookmark_path(@conn, :create, @user), fn f -> %>
+  <div class="form-group">
+    <%= text_input f, :name, placeholder: "Name", class: "form-control",
+      autofocus: true, required: true %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= text_input f, :url, placeholder: "URL", class: "form-control",
+      type: "url", required: true %>
+    <%= error_tag f, :url %>
+  </div>
+
+  <div class="form-group">
+    <%= textarea f, :notes, class: "form-control", rows: 5, placeholder: "Notes" %>
+  </div>
+
+  <%= font_awesome_submit "Save", "bookmark", class: "btn btn-primary btn-block btn-lg" %>
+<% end %>

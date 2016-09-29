@@ -6,7 +6,7 @@
 <div class="row marketing">
   <center>
     <%= if @current_user do %>
-      <%= font_awesome_link "View Your Bookmarks", "bookmark", to: "javascript:alert('TODO')",
+      <%= font_awesome_link "View Your Bookmarks", "bookmark", to: user_bookmark_path(@conn, :index, @current_user.id),
         class: "btn btn-primary btn-lg" %>
     <% else %>
         <%= font_awesome_link "Sign up", "sign-in", to: "/users/register", class: "btn btn-success btn-lg" %>

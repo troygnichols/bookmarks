@@ -13,4 +13,20 @@ defmodule Bookmarks.UtilHelpers do
     Phoenix.View.render(Bookmarks.ExternalAuthView,
       "external_auth_links.html", conn: conn)
   end
+
+  def shorten(text, len \\ 20, suffix \\ "…") do
+    if String.length(text) < len do
+      text
+    else
+      String.slice(text, 0..len-1) <> suffix
+    end
+  end
+
+  def present?(value) do
+    if value do
+      String.length(value) > 0
+    else
+      false
+    end
+  end
 end

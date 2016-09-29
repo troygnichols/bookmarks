@@ -1,4 +1,9 @@
-<h1 class="m-x-auto user-index-title"><%= font_awesome("users") %> Users</h1>
+<center>
+  <%= breadcrumbs do %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "Users", icon: "users" %>
+  <% end %>
+</center>
 
 <div class="table-responsive">
   <table class="table table-bordered">
@@ -27,6 +32,5 @@
 
 <hr>
 
-<%= link to: user_path(@conn, :new), class: "btn btn-primary btn-block" do %>
-  <%= font_awesome "plus" %> New User
-<% end %>
+<%= font_awesome_link "New User", "plus", to: user_path(@conn, :new),
+  class: "btn btn-primary btn-block" %>

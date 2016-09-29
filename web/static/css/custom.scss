@@ -1,3 +1,7 @@
+body {
+  font-family: Merriweather,sans-serif;
+}
+
 main {
   margin-top: 73px;
 }
@@ -115,5 +119,19 @@ form.link {
 
   .reg-login-text {
     margin-top: 2em;
+  }
+}
+
+.bookmark-index-table {
+  thead {
+    th.actions {
+      width: 180px;
+    }
+  }
+
+  tbody {
+    .divider {
+      color: #bbb;
+    }
   }
 }

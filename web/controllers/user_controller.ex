@@ -34,7 +34,6 @@ defmodule Bookmarks.UserController do
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-
   end
 
   def show(conn, %{"id"=>id}) do
@@ -49,14 +48,15 @@ defmodule Bookmarks.UserController do
   end
 
   def update(conn, %{"id"=>id, "user"=>user_params}) do
-    changeset = User.changeset(%User{id: String.to_integer(id)}, user_params)
+    user = Repo.get!(User, id)
+    changeset = User.changeset(user, user_params)
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "#{user.email} updated")
         |> redirect(to: user_path(conn, :show, id))
       {:error, changeset} ->
-        render(conn, "edit.html", changeset: changeset)
+        render(conn, "edit.html", changeset: changeset, user: user)
     end
   end
 

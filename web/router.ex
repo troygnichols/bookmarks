@@ -27,7 +27,9 @@ defmodule Bookmarks.Router do
 
     get "/users/register", UserController, :register
     resources "/users", UserController do
+      resources "/bookmarks", BookmarkController
     end
+
 
     resources "/sessions", SessionController, only: [:index ,:new, :create, :delete]
   end

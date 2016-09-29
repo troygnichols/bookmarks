@@ -1,7 +1,9 @@
 <center>
-  <h1>Login <%= font_awesome("sign-in") %></h1>
+  <%= breadcrumbs do %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "Login", icon: "sign-in" %>
+  <% end %>
 </center>
-<br>
 
 <%= external_auth_links(@conn) %>
 

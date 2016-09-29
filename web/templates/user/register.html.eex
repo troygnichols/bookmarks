@@ -1,6 +1,6 @@
 <center>
   <%= breadcrumbs do %>
-    <%= breadcrumb "Home", page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
     <%= breadcrumb "New account", icon: "user" %>
   <% end %>
 </center>
@@ -9,7 +9,7 @@
 <%= or_div %>
 
 <p class="center-sm" style="width: 242px;"><strong>Register with email &amp; password</strong></p>
-<%= form_for @changeset, user_path(@conn, :create), [id: "create-user-form"], fn f -> %>
+<%= form_for @changeset, user_path(@conn, :create), fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops! Something went wrong. Please check the errors below.</p>
@@ -24,7 +24,7 @@
     <%= password_input f, :password, placeholder: "Password", class: "form-control", required: true %>
     <%= error_tag f, :password %>
   </div>
-  <%= font_awesome_submit "Continue", "arrow-right", icon_placement: "after", class: "btn btn-primary btn-block" %>
+  <%= font_awesome_submit "Continue", "arrow-right", icon_placement: "after", class: "btn btn-success btn-block btn-lg" %>
 <% end %>
 
 <div class="center-sm reg-login-text" style="width: 186px;">

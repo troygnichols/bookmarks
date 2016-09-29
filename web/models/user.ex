@@ -24,9 +24,9 @@ defmodule Bookmarks.User do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, ~w(email))
-    |> Helpers.trim_fields([:email])
+    |> Helpers.trim_fields(~w(email)a)
     |> validate_length(:email, max: 100)
-    |> validate_required([:email])
+    |> validate_required(~w(email)a)
   end
 
   def registration_changeset(model, params \\ %{}) do

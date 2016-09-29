@@ -1,0 +1,34 @@
+<center>
+  <%= breadcrumbs do %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "Bookmarks", user_bookmark_path(@conn, :index, @current_user), icon: "bookmark" %>
+    <%= breadcrumb shorten(@bookmark.name, 10) %>
+  <% end %>
+</center>
+
+<br>
+
+<dl class="row">
+  <dt class="col-sm-1">Name</dt>
+  <dd class="col-sm-11"><%= @bookmark.name %></dd>
+
+  <dt class="col-sm-1">URL</dt>
+  <dd class="col-sm-11"><%= link shorten(@bookmark.url, 60), to: @bookmark.url, target: "_blank" %></dd>
+</dl>
+
+<%= if present?(@bookmark.notes) do %>
+  <textarea readonly="readonly" class="form-control" rows="5"><%= @bookmark.notes %></textarea>
+<% end %>
+
+<br>
+
+<%= font_awesome_link "Edit", "edit",
+  to: user_bookmark_path(@conn, :edit, @bookmark.user_id, @bookmark.id),
+  class: "btn btn-primary btn-block btn-lg" %>
+
+<hr>
+
+<%= font_awesome_link "Delete", "trash",
+  to: user_bookmark_path(@conn, :delete, @bookmark.user_id, @bookmark.id),
+  class: "btn btn-danger btn-block",
+  method: :delete, data: [confirm: "Really delete? Bookmark will be gone forever."] %>

@@ -1,0 +1,47 @@
+<center>
+  <%= breadcrumbs do %>
+    <%= breadcrumb nil, page_path(@conn, :index), icon: "home" %>
+    <%= breadcrumb "Bookmarks", icon: "bookmark" %>
+  <% end %>
+</center>
+
+<div class="table-responsive bookmark-index-table">
+  <table class="table table-bordered">
+    <thead class="table-inverse">
+      <tr>
+        <th class="hidden-sm-down">#</th>
+        <th>Name</th>
+        <th>URL</th>
+        <th class="hidden-sm-down actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= if length(@bookmarks) == 0 do %>
+        <tr><td colspan="4"><center>No bookmarks yet</center></td></tr>
+      <% else %>
+        <%= for bookmark <- @bookmarks do %>
+          <tr>
+            <th class="hidden-sm-down" scope="row"><%= bookmark.id %></th>
+            <td><%= link shorten(bookmark.name),
+              to: user_bookmark_path(@conn, :show, @user.id, bookmark.id) %></td>
+            <td><%= link shorten(bookmark.url, 50), to: bookmark.url, target: "_blank" %></td>
+            <td class="hidden-sm-down">
+              <center>
+                <%= font_awesome_link "Edit", "edit",
+                  to: user_bookmark_path(@conn, :edit, bookmark.user_id, bookmark.id) %>
+                <span class="divider">|</div>
+                <%= font_awesome_link "Delete", "trash",
+                  to: user_bookmark_path(@conn, :delete, bookmark.user_id, bookmark.id),
+                  method: :delete, data: [confirm:
+                   "Really delete? Bookmark will be gone forever."] %>
+              </center>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= font_awesome_link "New Bookmark", "plus", to: user_bookmark_path(@conn, :new, @user.id),
+    class: "btn btn-primary btn-block btn-lg" %>
+</div>
