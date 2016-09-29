@@ -41,7 +41,8 @@ defmodule Bookmarks.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 2.0"},
-      {:oauth2, "~> 0.7", git: "https://github.com/scrogson/oauth2.git", ref: "c0459d"}
+      {:oauth2, "~> 0.7", git: "https://github.com/scrogson/oauth2.git", ref: "c0459d"},
+      {:exrm, "~> 1.0.8"}
     ]
   end
 
